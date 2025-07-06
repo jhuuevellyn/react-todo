@@ -46,7 +46,7 @@ function App() {
   });
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, []);
+  }, [tasks]);
 
   function onTaskClick(taskId) {
     const newTasks = tasks.map((task) => {
