@@ -6,28 +6,7 @@ import Title from "./components/Title";
 
 function App() {
   const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || [
-      {
-        id: v4(),
-        title: "Estudar programação",
-        description:
-          "Estudar programação para se tornar um desenvolvedor full stack",
-        isCompleted: false,
-      },
-      {
-        id: v4(),
-        title: "Estudar inglês",
-        description: "Estudar inglês para se tornar fluente",
-        isCompleted: false,
-      },
-      {
-        id: v4(),
-        title: "Estudar matemática",
-        description:
-          "Estudar matemática para se tornar um desenvolvedor full stack",
-        isCompleted: false,
-      },
-    ]
+    JSON.parse(localStorage.getItem("tasks")) || []
   );
   useEffect(() => {
     async function fetchTasks() {
