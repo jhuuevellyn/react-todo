@@ -8,21 +8,21 @@ function App() {
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("tasks")) || []
   );
+
   useEffect(() => {
     async function fetchTasks() {
-      // CHAMAR API
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/todos?_limit=10",
-        { method: "GET" }
+        "https://jsonplaceholder.typicode.com/todos?_limit=5",
+        {
+          method: "GET",
+        }
       );
-      // PEGAR OS DADOS QUE ELA RETORNA
       const data = await response.json();
-
-      // ARMAZENAR/PERSISTIR ESSES DADOS NO STATE
       setTasks(data);
     }
     fetchTasks();
-  });
+  }, []);
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -41,6 +41,7 @@ function App() {
     const newTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(newTasks);
   }
+
   function onAddTaskClick(title, description) {
     const newTask = {
       id: v4(),
@@ -50,10 +51,11 @@ function App() {
     };
     setTasks([...tasks, newTask]);
   }
+
   return (
     <div className="w-screen h-screen bg-slate-400 flex justify-center p-6">
       <div className="w-[500px] space-y-4">
-        <Title>Gerenciador de Tarefas</Title>
+        <Title>Gerenciador de tarefas</Title>
         <AddTask onAddTaskClick={onAddTaskClick} />
         <Tasks
           tasks={tasks}
